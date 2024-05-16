@@ -1,37 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 
-function RegistrationForm({ isAfterparty }) {
-  // 状態を管理するためのuseStateフック
-  const [name, setName] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("cash");
-  const [isAttending, setIsAttending] = useState(false);
-
-  // フォーム送信時の処理
+function RegistrationForm({ name, setName, paymentMethod, setPaymentMethod, isAttending, setIsAttending, isAfterparty }) {
   const handleSubmit = (event) => {
-    event.preventDefault(); // デフォルトのフォーム送信を防ぐ
-    console.log(
-      `Name: ${name}, Payment Method: ${paymentMethod}, Attending Afterparty: ${isAttending}`
-    );
+    event.preventDefault();
+    console.log(`Name: ${name}, Payment Method: ${paymentMethod}, Attending Afterparty: ${isAttending}`);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>
-          名前:
+        <label>名前:
           <input
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}  // 状態更新関数を確実に呼び出す
           />
         </label>
       </div>
       <div>
-        <label>
-          支払い方法:
+        <label>支払い方法:
           <select
             value={paymentMethod}
-            onChange={(e) => setPaymentMethod(e.target.value)}
+            onChange={(e) => setPaymentMethod(e.target.value)}  // 状態更新関数を確実に呼び出す
           >
             <option value="cash">現金</option>
             <option value="card">電子マネー</option>
@@ -41,12 +31,11 @@ function RegistrationForm({ isAfterparty }) {
       </div>
       {isAfterparty && (
         <div>
-          <label>
-            二次会の参加:
+          <label>二次会の参加:
             <input
               type="checkbox"
               checked={isAttending}
-              onChange={(e) => setIsAttending(e.target.checked)}
+              onChange={(e) => setIsAttending(e.target.checked)}  // 状態更新関数を確実に呼び出す
             />
           </label>
         </div>
