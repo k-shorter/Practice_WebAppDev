@@ -7,6 +7,7 @@ import DisplayPayment from "./components/DisplayPayment";
 import RegistrationForm from "./components/RegistrationForm";
 import ShareButton from "./components/ShareButton"; 
 import LineShareButton from "./components/LineShareButton"; 
+import Getlocation from "./components/Getlocation"; 
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -67,6 +68,10 @@ function AppContent() {
       <div>
         <h1>LINE共有</h1>
         <LineShareButton /> {/* シェアボタンを追加 */}
+      </div>
+      <div>
+        <h1>緯度経度</h1>
+        <Getlocation /> {/* シェアボタンを追加 */}
       </div>
     </>
   );
