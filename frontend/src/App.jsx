@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 import PaymentCalculator from "./components/PaymentCalculator";
 import AfterpartyForm from "./components/AfterpartyForm";
 import DisplayPayment from "./components/DisplayPayment";
 import RegistrationForm from "./components/RegistrationForm";
-import ShareButton from "./components/ShareButton"; 
-import LineShareButton from "./components/LineShareButton"; 
-import Getlocation from "./components/Getlocation"; 
+import ShareButton from "./components/ShareButton";
+import LineShareButton from "./components/LineShareButton";
+import Getlocation from "./components/Getlocation";
+import Timer from "./components/Timer";
+import { TimerProvider, useTimer } from "./components/TimerContext";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -22,6 +30,7 @@ function AppContent() {
   const [name, setName] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const [isAttending, setIsAttending] = useState(false);
+  const { targetTime } = useTimer();
 
   // URLのクエリパラメータを更新する
   useEffect(() => {
@@ -73,17 +82,25 @@ function AppContent() {
         <h1>緯度経度</h1>
         <Getlocation /> {/* シェアボタンを追加 */}
       </div>
+      <div>
+        <Timer minutes={3} />
+        <p>
+          {targetTime ? new Date(targetTime).toLocaleTimeString() : "Not set"}
+        </p>
+      </div>
     </>
   );
 }
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<AppContent />} />
-      </Routes>
-    </Router>
+    <TimerProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<AppContent />} />
+        </Routes>
+      </Router>
+    </TimerProvider>
   );
 }
 

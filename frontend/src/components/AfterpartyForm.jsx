@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function AfterpartyForm({ isAfterparty,setIsAfterparty }) {
+function AfterpartyForm({ isAfterparty, setIsAfterparty }) {
   // 二次会の開催有無を管理するためのuseStateフック
-//   const [isAfterparty, setIsAfterparty] = useState(false);
+  //   const [isAfterparty, setIsAfterparty] = useState(false);
 
   // チェックボックスの状態が変更されたときの処理
   const handleCheckboxChange = (event) => {
@@ -21,9 +21,7 @@ function AfterpartyForm({ isAfterparty,setIsAfterparty }) {
           />
         </label>
       </div>
-      {isAfterparty && (
-        <div>二次会の詳細設定をこちらで行ってください。</div>
-      )}
+      {isAfterparty && <div>二次会の詳細設定をこちらで行ってください。</div>}
     </form>
   );
 }

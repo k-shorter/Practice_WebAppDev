@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Getlocation = () => {
   const [latitude, setLatitude] = useState(null);

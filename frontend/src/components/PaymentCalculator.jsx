@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function PaymentCalculator({ perPersonAmount, setPerPersonAmount }) {
   // 状態を管理するためのuseStateフック
   const [totalAmount, setTotalAmount] = useState(0);
   const [numberOfParticipants, setNumberOfParticipants] = useState(1);
-//   const [perPersonAmount, setPerPersonAmount] = useState(0);
+  //   const [perPersonAmount, setPerPersonAmount] = useState(0);
 
   // 合計金額または参加人数が変更されたときの処理
   const handleAmountChange = (e) => {
@@ -25,7 +25,7 @@ function PaymentCalculator({ perPersonAmount, setPerPersonAmount }) {
     } else {
       setPerPersonAmount(0);
     }
-    console.log(perPersonAmount)
+    console.log(perPersonAmount);
   };
 
   return (
@@ -54,9 +54,7 @@ function PaymentCalculator({ perPersonAmount, setPerPersonAmount }) {
           />
         </label>
       </div>
-      <div>
-        一人当たりの支払額: {perPersonAmount} 円
-      </div>
+      <div>一人当たりの支払額: {perPersonAmount} 円</div>
     </form>
   );
 }
