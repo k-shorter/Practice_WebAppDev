@@ -1,14 +1,33 @@
 import React from 'react';
+import { Form, Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 
-const AboutPage = ({ sharedValue, setSharedValue }) => {
+const AboutPage = () => {
   return (
-    <div>
+    <div className="container">
       <h1>About Page</h1>
-      <p>This is the About Page.</p>
-      <p>Shared Value: {sharedValue}</p>
-      <button onClick={() => setSharedValue('Updated from About Page')}>
-        Update Shared Value
-      </button>
+      <Form>
+        <FormGroup controlId="formBasicRange">
+          <FormLabel>シークバー</FormLabel>
+          <FormControl type="range" />
+        </FormGroup>
+        <FormGroup controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="チェックボックス" />
+        </FormGroup>
+        <FormGroup controlId="formBasicName">
+          <FormLabel>名前</FormLabel>
+          <FormControl type="text" placeholder="名前を入力してください" />
+        </FormGroup>
+        <FormGroup controlId="formBasicRadio">
+          <Form.Check type="radio" label="Yes" name="formRadio" id="formRadio1" />
+          <Form.Check type="radio" label="No" name="formRadio" id="formRadio2" />
+        </FormGroup>
+        <Button variant="primary" type="submit">
+          送信
+        </Button>
+      </Form>
+      <div className="mt-3">
+        <h3>金額: ¥2000</h3>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .mainContent {
+    flex: 1;
+    padding: 20px;
+    margin-top: 20px; /* ヘッダーの高さに応じて調整 */
+    margin-bottom: 20px; /* フッターの高さに応じて調整 */
+  }
+  
