@@ -1,100 +1,29 @@
-import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import LayoutTestPage from './pages/LayoutTestPage';
+import OrganizerTopPage from './pages/OrganizerTopPage';
+import ParticipantTopPage from './pages/ParticipantTopPage';
+import SearchAndReservePage from './pages/SearchAndReservePage';
 
-import PaymentCalculator from "./components/PaymentCalculator";
-import AfterpartyForm from "./components/AfterpartyForm";
-import DisplayPayment from "./components/DisplayPayment";
-import RegistrationForm from "./components/RegistrationForm";
-import ShareButton from "./components/ShareButton";
-import LineShareButton from "./components/LineShareButton";
-import Getlocation from "./components/Getlocation";
-import Timer from "./components/Timer";
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
 
-function AppContent() {
-  const navigate = useNavigate();
-  const query = useQuery();
-  const initialAmount = parseFloat(query.get("amount")) || 0;
-  const [perPersonAmount, setPerPersonAmount] = useState(initialAmount);
-  const [isAfterparty, setIsAfterparty] = useState(false);
-  const [name, setName] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("cash");
-  const [isAttending, setIsAttending] = useState(false);
-
-  // URLのクエリパラメータを更新する
-  useEffect(() => {
-    const params = new URLSearchParams();
-    params.set("amount", perPersonAmount);
-    navigate(`/?${params.toString()}`, { replace: true });
-  }, [perPersonAmount, navigate]);
-
-  return (
-    <>
-      <h1>Hello World!</h1>
-      <div>
-        <h1>割り勘機能</h1>
-        <PaymentCalculator
-          perPersonAmount={perPersonAmount}
-          setPerPersonAmount={setPerPersonAmount}
-          isAfterparty={isAfterparty}
-        />
-      </div>
-      <div>
-        <h1>二次会設定機能</h1>
-        <AfterpartyForm
-          isAfterparty={isAfterparty}
-          setIsAfterparty={setIsAfterparty}
-        />
-      </div>
-      <div>
-        <h1>参加者トップページ</h1>
-        <DisplayPayment perPersonAmount={perPersonAmount} />
-        <RegistrationForm
-          isAfterparty={isAfterparty}
-          name={name}
-          setName={setName}
-          paymentMethod={paymentMethod}
-          setPaymentMethod={setPaymentMethod}
-          isAttending={isAttending}
-          setIsAttending={setIsAttending}
-        />
-      </div>
-      <div>
-        <h1>URL共有</h1>
-        <ShareButton /> {/* シェアボタンを追加 */}
-      </div>
-      <div>
-        <h1>LINE共有</h1>
-        <LineShareButton /> {/* シェアボタンを追加 */}
-      </div>
-      <div>
-        <h1>緯度経度</h1>
-        <Getlocation /> {/* シェアボタンを追加 */}
-      </div>
-      <div>
-        <Timer />
-      </div>
-    </>
-  );
-}
-
-function App() {
+const App = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<AppContent />} />
-      </Routes>
+      <Layout>
+        <Routes>
+
+        <Route path="/" element={<LayoutTestPage />} />
+        <Route path="/organizer-top" element={<OrganizerTopPage />} />
+        <Route path="/participant-top" element={<ParticipantTopPage />} />
+        <Route path="/search-reserve" element={<SearchAndReservePage />} />
+
+
+        </Routes>
+      </Layout>
     </Router>
   );
-}
+};
 
 export default App;

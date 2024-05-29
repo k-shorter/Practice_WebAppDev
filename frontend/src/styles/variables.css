@@ -1,13 +1,16 @@
 :root {
-    --primary-color: #ffb300;
+    --primary-color: #ffbf00;
     --secondary-color: #c5c5c5;
     --background-color: #ffffff;
+    --test1-color: #aaaaaa;
+    --test2-color: #e6e4e4;
     --text-color: #000000;
     --font-size: 16px;
     --font-size-large: 20px;
     --font-size-small: 14px;
-    --margin: 16px;
+    --margin-td: 16px;
+    --margin-lr: 8px;
     --padding: 16px;
     --border-radius: 12px;
-  }
-  
+
+}

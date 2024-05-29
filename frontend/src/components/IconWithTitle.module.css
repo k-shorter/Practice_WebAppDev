@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* アイコンと文字の間隔を設定 */
+  }
+  
+  .icon {
+    width: var(--font-size); /* アイコンの幅を設定 */
+    height: var(--font-size); /* アイコンの高さを設定 */
+    object-fit: cover; /* アイコンのアスペクト比を維持 */
+  }
+  
+  .title {
+    margin: 0;
+  }
+  
