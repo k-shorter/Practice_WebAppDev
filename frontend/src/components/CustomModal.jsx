@@ -3,24 +3,19 @@ import Modal from 'react-bootstrap/Modal';
 
 import CustomSubmitButtom from "../components/CustomSubmitButtom";
 
-function CustomModal(props) {
+const CustomModal = ({ show, onHide, children }) => {
+  if (!show) {
+    return null;
+  }
+
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Header>
-      <Modal.Body>
-
-      <CustomSubmitButtom/>
-      </Modal.Body>
-
-    </Modal>
+    <div className="modal">
+      <div className="modal-content">
+        <span className="close-button" onClick={onHide}>&times;</span>
+        {children}
+      </div>
+    </div>
   );
-}
+};
 
 export default CustomModal;
