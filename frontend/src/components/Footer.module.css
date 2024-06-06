@@ -1,0 +1,18 @@
+.footer {
+  width: 100%;
+  font-size: var(--font-size-small);
+  text-align: center;
+  border-top: 1px solid var(--secondary-color);
+  display: flex;
+  justify-content: center; /* 中央揃え */
+  gap: 20px; /* リンク間のスペース */
+}
+
+.link {
+  color: #888;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #555; /* ホバー時の色を設定 */
+}

@@ -1,0 +1,10 @@
+.header {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}

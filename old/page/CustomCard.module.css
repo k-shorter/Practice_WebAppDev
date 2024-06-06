@@ -1,0 +1,21 @@
+.card {
+  background-color: #ffc107; /* オレンジ色の背景 */
+  color: white; /* 白色の文字 */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.label {
+  text-align: left; /* 左揃えに設定 */
+  margin: 0;
+  font-size: 0.9rem; /* 文字サイズを調整 */
+}
+
+.amount {
+  margin: -0.5em;
+  font-size: 2.5rem; /* 金額のフォントサイズを大きく */
+  font-weight: bold;
+  margin-bottom: 0.5px;
+}

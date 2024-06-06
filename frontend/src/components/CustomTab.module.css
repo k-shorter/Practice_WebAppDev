@@ -1,0 +1,16 @@
+.active {
+    background-color: var(--primary-color) !important; /* アクティブなタブの背景色を設定 */
+    border: 1px solid var(--text-color); /* アクティブなタブのボーダーを設定 */
+  }
+  
+  .tabImage {
+    width: 30px; /* 画像の幅を調整 */
+    height: 30px; /* 画像の高さを自動調整 */
+    display: block; /* 画像をブロック表示 */
+    margin: 0 auto; /* 画像を中央に配置 */
+  }
+
+  .notactive {
+    background-color: var(--secondary-color); /* アクティブなタブの背景色を設定 */
+  }
+  

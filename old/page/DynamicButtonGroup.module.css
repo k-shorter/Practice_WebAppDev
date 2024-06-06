@@ -1,0 +1,16 @@
+.customButtonGroup {
+    display: flex;
+  }
+  
+  .customButton {
+    border-radius: 12px; /* 角を丸める */
+    margin-right: 10px; /* ボタン右側の間隔を調整 */
+    height: 50px; /* ボタンの高さを増やす */
+    width: 70;
+    color: black !important; /* 文字を黒に変更 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* 左揃えに設定 */
+    font-size: 12px; /* フォントサイズを20pxに設定 */
+  }
+  

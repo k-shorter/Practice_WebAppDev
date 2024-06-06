@@ -1,0 +1,28 @@
+.customButtonGroup {
+  display: flex;
+  flex-wrap: wrap; /* 要素が折り返されるようにする */
+}
+
+.customButton {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 中央揃え */
+
+  border-radius: var(--border-radius);
+  margin-right: 10px; /* ボタン右側の間隔を調整 */
+  margin-bottom: 10px; /* ボタン下側の間隔を調整 */
+  height: 50px; /* ボタンの高さ */
+  width: 100px; /* ボタンの幅 */
+
+  font-size: 12px; /* フォントサイズ */
+  color: var(--text-color) !important; /* 文字色 */
+  background-color: var(--background-color) !important; /* 初期背景色 */
+  border: 1px solid var(--secondary-color) !important; /* 初期枠線の色と太さ */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* 影の追加 */
+}
+
+.customButton:active,
+.customButton.active {
+  background-color: var(--primary-color) !important; /* アクティブ時の背景色 */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* アクティブ時の影の色と強さ */
+}

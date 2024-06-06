@@ -1,0 +1,60 @@
+.cards {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0;
+    width: 100%;
+    justify-content: space-around;
+    position: relative; /* 新しいオーバーレイの位置を相対的にするため */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0;
+    width: 60px;
+    height: 70px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, left 0.3s ease, bottom 0.3s ease;
+}
+
+.cardSelected {
+    transform: scale(1.2); /* ひと回り大きくする */
+    transform-origin: left bottom; /* 左下を基準に拡大 */    
+    z-index: 10; /* 他のカードの上に表示するためにZインデックスを上げる */
+  }
+
+.title {
+    margin-bottom: 12px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.titleSelected {
+    margin-bottom: 12px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.cards img {
+    max-width: 100%;
+    max-height: 60%;
+}
+
+.cards .selectedImg{
+    max-width: 50%;
+    max-height: 60%;
+}
+
+
+
+
+
+

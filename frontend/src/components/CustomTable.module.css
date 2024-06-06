@@ -1,0 +1,30 @@
+.tableContainer {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #ffffff; /* 背景色を白に設定 */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table td, .table th {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  padding: 10px; /* 共通のパディングを追加 */
+}
+
+.highlight {
+  background-color: #d3d3d3; /* 灰色の背景色 */
+}
+
+.card {
+  width: 100px;
+  padding: 10px; /* 共通のパディングを追加 */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+}
