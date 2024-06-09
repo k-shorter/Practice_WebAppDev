@@ -50,10 +50,19 @@ def generate_random_location(lat, lon, max_distance_km=3):
 
     return new_lat, new_lon
 
+# カスタムプロバイダーを定義
+class RestaurantProvider(BaseProvider):
+    def restaurant_name(self):
+        prefixes = ['和食', '寿司', '居酒屋', '焼肉', 'ラーメン', 'カフェ']
+        suffixes = ['屋', '亭', '本店', '堂', '家', '庵', '処', '酒場']
+        prefix = random.choice(prefixes)
+        suffix = random.choice(suffixes)
+        return f"{prefix}{suffix}"
+
 # Fakerを使用して仮想のデータを生成する関数
 def generate_fake_data():
     session = db_session()
-    fake = Faker()
+    fake = Faker('ja_JP')
 
     for i in range(100):
         # 特定の地点から3km圏内のランダムな緯度と経度を生成
@@ -65,7 +74,7 @@ def generate_fake_data():
             restaurant_name=fake.company(),
             address=fake.address(),
             contact=fake.phone_number(),
-            total_seats=randint(1, 50),
+            total_seats=randint(10, 50),
             latitude=latitude,
             longitude=longitude,
             image=image_url  
@@ -77,7 +86,7 @@ def generate_fake_data():
             restaurant_id=restaurant.restaurant_id,
             genre=fake.random_element(elements=("中華", "イタリアン", "焼き鳥", "海鮮")),
             smoking_allowed=fake.boolean(),
-            budget=fake.random_int(min=2000, max=15000),  # 修正された部分,
+            budget=fake.random_int(min=2000, max=12000),  # 修正された部分,
             additional_info=fake.text()
         )
         session.add(restaurant_details)
@@ -165,7 +174,7 @@ def delete_event_data():
     session.close()
 
 # 実行例
-#generate_fake_data()  # データ生成
+generate_fake_data()  # データ生成
 #generate_payment_method_data()
 #delete_fake_data()    # データ削除
-delete_event_data()
+#delete_event_data()

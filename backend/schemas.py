@@ -27,7 +27,7 @@ class PreferenceCreate(PreferenceBase):
 
 class Preference(PreferenceBase):
     preference_id: int
-    user_id: int
+    # user_id: int
 
     class Config:
         orm_mode = True
@@ -61,9 +61,9 @@ class ParticipantCreate(ParticipantBase):
 class Participant(ParticipantBase):
     participant_id: int
     user: User
-    event_id: int
-    payment: Payment
-    preference: Preference
+    # event_id: int
+    # payment: Payment
+    # preference: Preference
 
     class Config:
         orm_mode = True
@@ -109,10 +109,72 @@ class AdjustParticipants(BaseModel):
     class Config:
         orm_mode = True
 
-#参加者数調整用
-class SearchRestaurant(BaseModel):
-    event_id: int=1
-    budget: float=2000
+#レストラン検索用
+class RestaurantDetailsBase(BaseModel):
+    genre: str
+    smoking_allowed: bool
+    budget: float
+    additional_info: Optional[str]
+
+class RestaurantDetailsCreate(RestaurantDetailsBase):
+    pass
+
+class RestaurantDetails(RestaurantDetailsBase):
+    restaurant_details_id: int
+
     class Config:
         orm_mode = True
+
+class AvailabilityBase(BaseModel):
+    available_seats: int
+    updated_at: datetime
+
+class AvailabilityCreate(AvailabilityBase):
+    pass
+
+class Availability(AvailabilityBase):
+    availability_id: int
+
+    class Config:
+        orm_mode = True
+
+class RestaurantBase(BaseModel):
+    restaurant_name: str
+    address: str
+    contact: str
+    total_seats: int
+    latitude: float
+    longitude: float
+    image: Optional[str]
+
+class RestaurantCreate(RestaurantBase):
+    pass
+
+class Restaurant(RestaurantBase):
+    restaurant_id: int
+    restaurant_details: Optional[RestaurantDetails]
+    # availability: Optional[Availability]
+
+    class Config:
+        orm_mode = True
+
+#予約用
+class ReservationBase(BaseModel):
+    reservation_date: datetime
+    reserved_seats: int=2
+    reservation_status: int
+    arrival_time: datetime
+    updated_at: datetime
+
+class ReservationCreate(ReservationBase):
+    restaurant_id: int=1
+    organizer_id: int=1
+
+class Reservation(ReservationBase):
+    reservation_id: int
+    restaurant_id: int
+    organizer_id: int
+
+    class Config:
+        from_attributes = True
         
