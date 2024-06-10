@@ -25,19 +25,25 @@ def find_best_restaurant(user_location: Tuple[float, float], restaurants: List[m
         )[0]
 
     if budget_group:
-        # 安いグループの中で好みかつ近い
-        best_budget_restaurant = classify_restaurants_by_walking_time(
-            user_location,
-            classify_restaurants_by_preferences(budget_group, participant_preferences, mode="best"),
-            mode="best"
-        )[0]
+        # すでに選ばれたレストランを除外
+        budget_group = [r for r in budget_group if r != best_walking_time_restaurant]
+        if budget_group:
+            # 安いグループの中で好みかつ近い
+            best_budget_restaurant = classify_restaurants_by_walking_time(
+                user_location,
+                classify_restaurants_by_preferences(budget_group, participant_preferences, mode="best"),
+                mode="best"
+            )[0]
 
     if preferences_group:
-        # 好みのグループの中で近いかつ安い
-        best_preferences_restaurant = classify_restaurants_by_budget(
-            classify_restaurants_by_walking_time(user_location, preferences_group, mode="best"),
-            specified_budget,
-            mode="best"
-        )[0]
+        # すでに選ばれたレストランを除外
+        preferences_group = [r for r in preferences_group if r != best_walking_time_restaurant and r != best_budget_restaurant]
+        if preferences_group:
+            # 好みのグループの中で近いかつ安い
+            best_preferences_restaurant = classify_restaurants_by_budget(
+                classify_restaurants_by_walking_time(user_location, preferences_group, mode="best"),
+                specified_budget,
+                mode="best"
+            )[0]
 
     return [best_walking_time_restaurant, best_budget_restaurant, best_preferences_restaurant]
