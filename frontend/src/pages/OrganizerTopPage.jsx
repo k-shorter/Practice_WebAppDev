@@ -7,7 +7,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 const OrganizerTopPage = () => {
   const [eventData, setEventData] = useState({
     event_name: "",
-    event_date: "",
+    // event_date: "",
     total_cost: 0,
     primary_participant_count: 0,
     secondary_participant_count: 0,
@@ -78,16 +78,6 @@ const OrganizerTopPage = () => {
                   type="text"
                   name="event_name"
                   value={eventData.event_name}
-                  onChange={handleInputChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="formEventDate">
-                <Form.Label>Event Date</Form.Label>
-                <Form.Control
-                  type="datetime-local"
-                  name="event_date"
-                  value={eventData.event_date}
                   onChange={handleInputChange}
                   required
                 />

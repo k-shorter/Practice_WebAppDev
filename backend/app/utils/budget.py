@@ -6,10 +6,16 @@ def classify_restaurants_by_budget(restaurants: List[models.Restaurant], specifi
     
     for restaurant in restaurants:
         if restaurant.restaurant_details.budget <= specified_budget and restaurant.restaurant_details.budget >= specified_budget - 1000:
+            restaurant.budget_eval = 1
+            restaurant.budget_eval_text = str(specified_budget)+"円 以下"
             groups["budget_low"].append(restaurant)
         elif restaurant.restaurant_details.budget <= specified_budget + 1500 and restaurant.restaurant_details.budget > specified_budget:
+            restaurant.budget_eval = 2 
+            restaurant.budget_eval_text = str(specified_budget)+"円 ~"+str(specified_budget+1500)+ "円"
             groups["budget_mid"].append(restaurant)
         else:
+            restaurant.budget_eval = 3 
+            restaurant.budget_eval_text = str(specified_budget+1500)+"円 ~"
             groups["budget_high"].append(restaurant)
 
      # 各グループを安い順に並べ替え

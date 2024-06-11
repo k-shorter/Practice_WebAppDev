@@ -47,10 +47,13 @@ def classify_restaurants_by_preferences(restaurants: List[models.Restaurant], pa
         evaluation = evaluate_preferences(restaurant, participant_preferences)
         restaurant.evaluation = evaluation  # レストランに評価スコアを追加
         if evaluation >= 80:
+            restaurant.evaluation_eval = 1
             groups["80%以上"].append(restaurant)
         elif 40 <= evaluation < 80:
+            restaurant.evaluation_eval = 2
             groups["40~80%"].append(restaurant)
         else:
+            restaurant.evaluation_eval = 3
             groups["40%以下"].append(restaurant)
 
     # 各グループを評価スコアの高い順に並べ替え

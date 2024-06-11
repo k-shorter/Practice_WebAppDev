@@ -84,7 +84,7 @@ class Organizer(OrganizerBase):
 
 class EventBase(BaseModel):
     event_name: str="event_name"
-    event_date: datetime
+    # event_date: datetime
     total_cost: float=45000
     primary_participant_count: int=8
     secondary_participant_count: int
@@ -96,6 +96,7 @@ class EventCreate(EventBase):
 
 class Event(EventBase):
     event_id: int
+    event_date: datetime
     organizer: Organizer
 
     class Config:

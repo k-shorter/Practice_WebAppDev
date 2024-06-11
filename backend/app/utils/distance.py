@@ -27,10 +27,13 @@ def classify_restaurants_by_walking_time(user_location: Tuple[float, float], res
         restaurant.walking_time_min = walking_time_min  # レストランに評価スコアを追加
 
         if walking_time_min <= 10:
+            restaurant.walking_time_min_eval = 1  
             groups["3~10分"].append(restaurant)
         elif walking_time_min <= 15:
+            restaurant.walking_time_min_eval = 2  
             groups["11~15分"].append(restaurant)
         else:
+            restaurant.walking_time_min_eval = 3  
             groups["15分~"].append(restaurant)
 
     # 各グループを近い順に並べ替え

@@ -2,11 +2,14 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Container, Row, Col, Table } from 'react-bootstrap';
 
+import CustomCarousels from '../components/CustomCarousels';
+
 const SearchReservePage = () => {
   const location = useLocation();
   const { bestRestaurants } = location.state || {};
 
   return (
+    <div className="container">
     <Container>
       <Row className="justify-content-md-center">
         <Col md="8">
@@ -36,6 +39,10 @@ const SearchReservePage = () => {
         </Col>
       </Row>
     </Container>
+    <div className="component">
+    </div>
+    <CustomCarousels/>
+    </div>
   );
 };
 

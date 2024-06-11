@@ -10,7 +10,9 @@ function CustomTab({ activeIndex, onTabClick }) {
     <Nav variant="tabs" activeKey={activeIndex} onSelect={(selectedKey) => onTabClick(parseInt(selectedKey))}>
       <Nav.Item>
         <Nav.Link eventKey={0} className={activeIndex === 0 ? styles.active : styles.notactive}>
+        <div className={styles.tabImageWrapper}>
           <img src={image1} alt="First slide" className={styles.tabImage} />
+          </div>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
