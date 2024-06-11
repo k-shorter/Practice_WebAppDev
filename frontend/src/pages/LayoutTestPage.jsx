@@ -6,13 +6,15 @@ import CustomButtonGroup from "../components/CustomButtonGroup";
 import CustomCarousels from "../components/CustomCarousels";
 import Keypad from "../components/Keypad";
 
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
 import CustomTitleImage from "../components/CustomTitleImage";
 import CustomModal from "../components/CustomModal";
 import CustomTable from "../components/CustomTable";
 
 import "../styles/global.css";
+import './a.css';  // CSSファイルのインポート
+
 
 const LayoutTestPage = () => {
   const [input, setInput] = useState("");
@@ -21,7 +23,7 @@ const LayoutTestPage = () => {
   const data = [
     { name: "Alice", attendance: true, paid: true },
     { name: "Bob", attendance: false, paid: false },
-    { name: "Charlie", attendance: true, paid: false }
+    { name: "Charlie", attendance: true, paid: false },
   ];
 
   const handleKeyPress = (key) => {
@@ -63,10 +65,7 @@ const LayoutTestPage = () => {
         <Button variant="primary" onClick={() => setModalShow(true)}>
           Launch vertically centered modal
         </Button>
-        <CustomModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-        />
+        <CustomModal show={modalShow} onHide={() => setModalShow(false)} />
       </div>
       {/* <div
         className={`${"component"} ${tableVisible ? "visibleTable" : "hiddenTable"}`}
@@ -75,15 +74,20 @@ const LayoutTestPage = () => {
         <CustomTable data={data} />
       </div> */}
       <CustomTable data={data} />
-
-        <select id="number" name="number">
-          {numbers.map((number) => (
-            <option key={number} value={number}>
-              {number}
-            </option>
-          ))}
-        </select>
-
+      <select id="number" name="number">
+        {numbers.map((number) => (
+          <option key={number} value={number}>
+            {number}
+          </option>
+        ))}
+      </select>
+      <div className="overlay-card">
+        <img src="./vite.svg"  className="overlay-image" />
+        <div className="overlay-content">
+          <h2>asd</h2>
+          <p>dsa</p>
+        </div>
+      </div>
     </div>
   );
 };
