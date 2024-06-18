@@ -50,14 +50,6 @@ def generate_random_location(lat, lon, max_distance_km=3):
 
     return new_lat, new_lon
 
-# カスタムプロバイダーを定義
-class RestaurantProvider(BaseProvider):
-    def restaurant_name(self):
-        prefixes = ['和食', '寿司', '居酒屋', '焼肉', 'ラーメン', 'カフェ']
-        suffixes = ['屋', '亭', '本店', '堂', '家', '庵', '処', '酒場']
-        prefix = random.choice(prefixes)
-        suffix = random.choice(suffixes)
-        return f"{prefix}{suffix}"
 
 # Fakerを使用して仮想のデータを生成する関数
 def generate_fake_data():
@@ -130,12 +122,14 @@ def generate_payment_method_data():
 def delete_fake_data():
     session = db_session()
 
-    # Availability, RestaurantDetails, Restaurantsの順番で削除していく
-    # これは、外部キー制約により依存関係があるため
+    # 外部キー制約に基づいて削除の順序を決定
+    session.query(Reservation).delete()
     session.query(Availability).delete()
     session.query(RestaurantDetails).delete()
     session.query(Restaurant).delete()
+
     # オートインクリメントをリセット
+    session.execute(text("ALTER TABLE reservation AUTO_INCREMENT = 1;"))
     session.execute(text("ALTER TABLE availability AUTO_INCREMENT = 1;"))
     session.execute(text("ALTER TABLE restaurant_details AUTO_INCREMENT = 1;"))
     session.execute(text("ALTER TABLE restaurant AUTO_INCREMENT = 1;"))
@@ -174,7 +168,55 @@ def delete_event_data():
     session.close()
 
 # 実行例
-generate_fake_data()  # データ生成
+#generate_fake_data()  # データ生成
 #generate_payment_method_data()
 #delete_fake_data()    # データ削除
 #delete_event_data()
+
+
+import csv
+
+
+def import_data_from_csv(csv_file_path):
+    session = db_session()
+    fake = Faker('ja_JP')
+    
+    with open(csv_file_path, mode='r', encoding='utf-8') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            restaurant = Restaurant(
+                restaurant_name=row['Name'],
+                address=row['Address'],
+                contact=fake.phone_number(),  # ダミーデータとしてFakerを使用
+                total_seats=int(row['Capacity']),
+                latitude=float(row['Lat']),
+                longitude=float(row['Lng']),
+                image=row['Image']
+            )
+            session.add(restaurant)
+            session.commit()  # 先にrestaurantをコミットしてIDを取得
+
+            restaurant_details = RestaurantDetails(
+                restaurant_id=restaurant.restaurant_id,
+                genre=row['Genre'],
+                smoking_allowed=row['Smoking allowed'] == 'True',  # CSVからブール値に変換
+                budget=int(row['Budget']),
+                additional_info=row['Additional info'] if row['Additional info'] else ""  # 空の場合の処理
+            )
+            session.add(restaurant_details)
+            session.commit()
+
+            availability = Availability(
+                restaurant_id=restaurant.restaurant_id,
+                available_seats=int(row['Available seats']),
+                updated_at=fake.date_time_between(start_date="-1d", end_date="now")  # ダミーデータとしてFakerを使用
+            )
+            session.add(availability)
+            session.commit()
+
+            print(f"レストラン {restaurant.restaurant_name} のデータが追加されました。")
+
+    session.close()
+
+# 実行例
+import_data_from_csv('restaurants.csv')  # CSV
