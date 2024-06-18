@@ -82,7 +82,7 @@ if response.status_code == 200:
             "Lat": shop_lat,
             "Lng": shop_lng,
             "Capacity": shop_capacity_int,
-            "Image": "/images/"+str(i)+".jpg",
+            "Image": str(i)+".jpg",
             "Budget": max_budget,
             "Genre": converted_genre,
             "Smoking allowed": smoking_allowed,
